@@ -21,10 +21,7 @@ func (z *Initializer) InitFilters() {
 }
 
 func (z *Initializer) InitServices() {
-	bind.DefaultRegistry.Add("go.lego.srv.demo-srv", []*bind.Element{
-		&bind.Element{ID: "echo.send"},
-		&bind.Element{ID: "echo.sent"},
-		&bind.Element{ID: "echo.error"},
-	})
 	api.AddService(&echo.Echo{})
+
+	bind.SetRegistry(bind.NewRedisRegistry("127.0.0.1:6379", "ttt"))
 }
